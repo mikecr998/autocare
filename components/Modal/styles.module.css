@@ -1,0 +1,103 @@
+.modal {
+    background-color: lightgrey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.contenedor {
+    padding: 50px 10px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input {
+    padding: .5rem;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    width: 95%;
+    margin: 0 auto 1rem;
+    
+    
+}
+
+.input:last-of-type {
+    text-align: center;
+}
+
+.inputFile {
+    padding: .5rem;
+    border: none;
+    border-radius: 10px;
+    margin: 0 auto 1rem;
+    display: flex;
+    width: 95%;
+    background-color: white;
+}
+
+.btnCerrar {
+    position: absolute;
+    top:4px;
+    right: 4px;
+    border: none;
+    background-color: rgb(212, 23, 23);    
+    padding: .2rem .5rem;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+}
+
+.btnActualizar {
+    padding: .5rem;
+    border: none;
+    border-radius: 10px;
+    margin: 0 auto 1rem;
+    display: flex;
+    width: 95%;
+    background-color: rgb(22, 187, 30);    
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.btnActualizar:hover {
+    background-color: rgb(65, 175, 71);    
+}
+
+.error {
+    text-align: center;
+    color: red;
+    font-family: 'Roboto', sans-serif;
+    margin-left:-20px;
+    padding: 0;
+}
+
+@media(min-width: 768px) {
+    .modal {
+        width: 40%;
+    }
+    .input {
+        width: 90%;
+    }
+    .inputFile {
+
+        width: 90%;
+    }
+    .btnActualizar {
+        width: 90%;
+    }
+    .error {
+        margin-left: 0;
+    }
+}
