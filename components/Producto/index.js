@@ -21,7 +21,7 @@ import {
 } from "./styles";
 
 const Prodcuto = ({ producto, toggleLike, setModal}) => {
-  const { usuario } = useContext(FirebaseContext);
+  const { usuario } = useContext(FirebaseContext)
 
   const router = useRouter()
 

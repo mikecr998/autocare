@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import {useContext} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 //Context
 import {FirebaseContext} from 'firebase/context'
 //Componentes

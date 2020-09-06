@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import {useState, useContext} from 'react'
 import {FirebaseContext} from "firebase/context"
 
-const ModalEmpresa = ({setModal, userEmail}) => {
+const ModalEmpresa = ({setModal, userEmail, setUser}) => {
     const {metodos} =  useContext(FirebaseContext)
     const { register, handleSubmit, getValues } = useForm();
     const [error, SetError] = useState(null)
@@ -17,6 +17,7 @@ const ModalEmpresa = ({setModal, userEmail}) => {
         } 
         SetError(false)
         setModal(false)
+        setUser({email: userEmail, tipo: "empresa",...datos})
         metodos.actualizarInfo(userEmail,datos)
         metodos.actualizarNombreEmpresaProducto(userEmail, nombre)
     }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import FirebaseProvider from 'firebase/context'
+import AppState from "context/appState"
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,10 +10,11 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" /> 
         <title>AUTOCARE</title>
       </Head>
-      
-      <FirebaseProvider>
-        <Component {...pageProps} />
-      </FirebaseProvider>
+      <AppState>
+        <FirebaseProvider>
+          <Component {...pageProps} />
+        </FirebaseProvider>
+      </AppState>      
 
       <style jsx global>{`
         html {

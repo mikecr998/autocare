@@ -19,17 +19,23 @@ Modal.setAppElement("#__next")
 
 const Cuenta = () => {
     const {metodos, usuario} = useContext(FirebaseContext)
-    const [user, setUser] = useState(()=> usuario)
+    const [user, setUser] = useState(usuario)
     const [modalstate, setModal] = useState(false)
 
-    if(usuario) {
-        metodos.obtenerUsuario(sessionStorage.getItem("usuario"))
-                .then(res => setUser(res[0]))
-    }    
+    useEffect(()=> {
+        setUser(usuario)
+    }, [usuario])
+
+    useEffect(()=> {
+        if(user) {
+            metodos.obtenerUsuario(sessionStorage.getItem("usuario"))
+                    .then(res => setUser(res[0]))
+        }
+    },[])    
     
     const header = user && (user.tipo === "empresa" ? <HeaderEmpresa /> : <HeaderUsuario />)
     const cuenta = user && (user.tipo === "empresa" ? 
-        (<CuentaEmpresa user={user} setModal={setModal}/> ) : (<CuentaUsuario user={user} setModal={setModal}/> ))
+        (<CuentaEmpresa user={user} setModal={setModal}/> ) : (<CuentaUsuario user={user} setModal={setModal} /> ))
     
     return ( 
         <>
@@ -39,10 +45,10 @@ const Cuenta = () => {
                 <ImagenUser>
                     <img src="user.svg"/>
                 </ImagenUser>
-                {!user ? <Spinner /> : cuenta}
+                {user === null ? <Spinner /> : cuenta}
             </Layout>
             <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
-                {user && (user.tipo === "empresa" ? <ModalEmpresa setModal={setModal} userEmail={user.email}/> : <ModalUsuario setModal={setModal} userEmail={user.email}/>)}
+                {user && (user.tipo === "empresa" ? <ModalEmpresa setModal={setModal} userEmail={user.email} setUser={setUser} /> : <ModalUsuario setModal={setModal} userEmail={user.email} setUser={setUser}/>)}
             </Modal>
         </>
      );

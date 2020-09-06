@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+
 const Contenedor = styled.div`
     margin: 0 auto;
     display: flex;
@@ -137,6 +140,11 @@ const Header = () => {
                     <Link href="/">
                         <Ancor>Inicio</Ancor>
                     </Link>
+                    <FontAwesomeIcon 
+                icon={faList}
+                height="30"
+                color="white"
+            />
                 </Elemento>
                 <Elemento>
                     <Link href="/productosTodos">
