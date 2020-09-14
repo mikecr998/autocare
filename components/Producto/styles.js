@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Contenedor = styled.div`
     width: 300px;
-    margin: 0 auto;
+    margin: -4rem auto;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,7 @@ export const Contenedor = styled.div`
         width: 1000px;
         flex-direction: row;
         justify-content: space-between;
+        margin: -6rem auto;
     }
 `
 export const Titulo = styled.h2`
@@ -20,9 +21,11 @@ export const Titulo = styled.h2`
     text-transform: uppercase;
     text-align: center;
     font-weight: 700;
+    margin: 7rem;
 
     @media (min-width:768px) {
         font-size: 1.5rem;
+        margin: 10rem;
     }
 `
 export const ContenedorImagen = styled.div`

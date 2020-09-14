@@ -6,8 +6,7 @@ import CSS from 'components/Modal/styles.module.css'
 //Context
 import {FirebaseContext} from 'firebase/context'
 //Componentes
-import HeaderUsuario from  'components/Header/HeaderUsuario'
-import HeaderGlobal from 'components/Header/HeaderGlobal'
+import Header from  'components/HeaderResponsive'
 import Spinner from 'components/Spinner'
 import Producto from 'components/Producto'
 import ModalCompra from 'components/Modal/ModalCompra'
@@ -48,7 +47,7 @@ const ProductoPagina = () => {
    
     return ( 
         <>
-            { usuario ? <HeaderUsuario /> : <HeaderGlobal />}
+            <Header />
             {Object.keys(producto).length === 0 ? <Spinner /> : <Producto producto={producto} toggleLike={toggleLike} setModal={setModal}/>}
             <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
                 <ModalCompra setModal={setModal} id={id}/>
