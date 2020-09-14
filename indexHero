@@ -3,8 +3,12 @@ import styled from 'styled-components'
 import {useContext} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+//Context
+import {FirebaseContext} from 'firebase/context'
 //Componentes
-import Header from "components/HeaderResponsive"
+import Header from 'components/Hero/header'
+import HeaderUsuario from 'components/Header/HeaderUsuario'
+import HeaderEmpresa from 'components/Header/HeaderEmpresa'
 
 const Contenedor = styled.div`
     background-image: url('hero.jpg');
@@ -22,7 +26,6 @@ const ContenedorFrase = styled.div`
 
     @media (min-width:768px) {
         width: 700px;
-        margin: 0 auto;
     }
 `
 const Frase = styled.h1`
@@ -36,24 +39,28 @@ const Frase = styled.h1`
 
     @media (min-width:768px) {
         font-size: 3rem;
-        margin: 17rem auto 0 auto;
+        margin-top: 16rem;
     }
 `
+
 const Hero = () => {
+    const {usuario} = useContext(FirebaseContext)  
+
     return ( 
-        <>
        <Contenedor>
-            <ContenedorFrase>
-                <Frase>Las mejores piezas las encuentras aquí</Frase>
-                <FontAwesomeIcon 
-                    icon={faAngleDoubleDown}
-                    height="100"
-                    color="white"
-                />
-            </ContenedorFrase> 
-        </Contenedor>
-       <Header/>
-        </>
+           {usuario  ? (
+               usuario.tipo === "usuario" ? <HeaderUsuario sinFondo/> : <HeaderEmpresa sinFondo/>
+           ) : <Header />}
+           <ContenedorFrase>
+            <Frase>Las mejores piezas las encuentras aquí</Frase>
+            <FontAwesomeIcon 
+                icon={faAngleDoubleDown}
+                height="100"
+                color="white"
+            />
+            </ContenedorFrase>
+            
+       </Contenedor>
      );
 }
  

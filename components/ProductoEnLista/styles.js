@@ -27,7 +27,7 @@ export const ContenedorImagen = styled.div`
 
 export const ContenedorCuadricula = styled.div`
     width: 95%;
-    margin: 20rem auto 0;
+    margin: 6rem auto 0;
     display: grid;
     grid-template-rows: auto;
     

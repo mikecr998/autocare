@@ -3,7 +3,7 @@
 import { FirebaseContext } from "firebase/context";
 import { useContext, useEffect, useState } from "react";
 //Componentes
-import Header from "components/Header/HeaderEmpresa";
+import Header from "components/HeaderResponsive";
 import { Titulo } from "components/UI";
 import { ContenedorCuadricula } from "components/ProductoEnLista/styles";
 import Producto from "components/ProductosEmpresa";
@@ -16,8 +16,17 @@ const ProductosEmpresa = () => {
   const [productos, setProductos] = useState(null);
   const [filtro, setFiltro] = useState("");
   const [productosFiltrados, setProductosFiltrados] = useState([]);
-  const [cambio, setCambio] = useState(false)
 
+  //Cuando carga el componente
+  useEffect(()=> {
+    if (usuario) {
+      metodos.getProductosEmpresa(usuario.email).then((productos) => {
+        setProductos(productos), setProductosFiltrados(productos); 
+      });
+    }
+  }, [usuario])
+
+  //Cuando se ejecuta la busqueda
   useEffect(() => {
     if (productos) {
       const products = productos.filter(
@@ -29,25 +38,16 @@ const ProductosEmpresa = () => {
     }
   }, [filtro]);
 
-  useEffect(()=> {
-    if (usuario) {
-      metodos.getProductosEmpresa(usuario.email).then((productos) => {
-        setProductos(productos), setProductosFiltrados(productos);
-      });
+  //Cuando se actualiza algun producto
+  useEffect(() => {
+    if (productos) {
+      setProductosFiltrados(productos);
     }
-  }, [cambio])
-
-  useEffect(()=> {
-    if (usuario) {
-      metodos.getProductosEmpresa(usuario.email).then((productos) => {
-        setProductos(productos), setProductosFiltrados(productos); 
-      });
-    }
-  }, [usuario])
+  }, [productos]);
 
   return (
     <>
-      <Header fixed />
+      <Header />
       <ContenedorCuadricula>
       <div className="centrado">
         <Buscador setFiltro={setFiltro} />  
@@ -62,7 +62,7 @@ const ProductosEmpresa = () => {
           </div>
         ) : (
           productosFiltrados.map((producto) => (
-            <Producto key={producto.id} producto={producto} setCambio={setCambio}/>
+            <Producto key={producto.id} producto={producto} productos={productos} setProductos={setProductos}/>
           ))
         )}
       </ContenedorCuadricula>

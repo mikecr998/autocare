@@ -7,7 +7,7 @@ import {useContext} from 'react'
 import {FirebaseContext} from 'firebase/context'
 //Componentes
 import Layout from 'components/Layout'
-import HeaderGlobal from 'components/Header/HeaderGlobal'
+import Header from 'components/HeaderResponsive'
 import {Formulario, Campo, BtnSubmit, Ancor, Titulo, Error } from 'components/UI'
 
 const RegistroEmpresa = () => {
@@ -39,7 +39,7 @@ const RegistroEmpresa = () => {
 
     return ( 
         <>
-        <HeaderGlobal />
+        <Header />
         <Layout>
             <Titulo>Registra tu negocio</Titulo>
             <Formulario

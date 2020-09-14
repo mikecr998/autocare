@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { FirebaseContext } from "firebase/context";
 //Componentes
 import Layout from "components/Layout";
-import HeaderGlobal from "components/Header/HeaderGlobal";
+import Header from "components/HeaderResponsive";
 import { Formulario, Campo, BtnSubmit, Titulo, Error } from "components/UI";
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
   }
   return (
     <>
-      <HeaderGlobal />
+      <Header />
       <Layout>
         <Titulo>Iniciar Sesión</Titulo>
         <Formulario onSubmit={handleSubmit(handleOnSubmit)}>

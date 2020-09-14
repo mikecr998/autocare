@@ -1,6 +1,5 @@
 //Dependencias
 import shortid from 'shortid'
-import {useRouter} from 'next/router'
 import { useForm } from "react-hook-form";
 import {useState, useContext} from 'react'
 //Context
@@ -11,8 +10,7 @@ import CSS from './styles.module.css'
 
 
 
-const ModalActualizarProducto = ({setModal, id, setCambio}) => {
-    const router = useRouter()
+const ModalActualizarProducto = ({setModal, id, productos, setProductos}) => {
     const {metodos} =  useContext(FirebaseContext)
     const { register, handleSubmit, getValues } = useForm();
     const [error, SetError] = useState(null)
@@ -29,9 +27,17 @@ const ModalActualizarProducto = ({setModal, id, setCambio}) => {
         datos.fotoURL= fotoURL
         SetError(false)
         setModal(false)
-        metodos.actualizarProducto(id, datos)
-        setCambio(value => !value)
-        
+
+        const nuevosProductos = productos.map(producto => {
+            if(producto.id === id) {
+                producto= {id: id, ...datos}
+                return producto
+            } else {
+                return producto
+            }
+        })
+        setProductos([...nuevosProductos])
+        metodos.actualizarProducto(id, datos)        
     }
 
     const OnChangeFoto = e => {

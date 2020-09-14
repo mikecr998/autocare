@@ -7,7 +7,7 @@ import {useContext} from 'react'
 import {FirebaseContext} from 'firebase/context'
 //Componentes
 import Layout from "components/Layout";
-import HeaderGlobal from "components/Header/HeaderGlobal";
+import Header from "components/HeaderResponsive";
 import {
   Formulario,
   Campo,
@@ -47,7 +47,7 @@ const RegistroUsuario = () => {
 
   return (
     <>
-      <HeaderGlobal />
+      <Header/>
       <Layout>
         <Titulo>Registro</Titulo>
         <Formulario onSubmit={handleSubmit(handleOnSubmit)}>

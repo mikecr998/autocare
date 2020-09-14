@@ -6,7 +6,7 @@ import {useRouter} from 'next/router'
 //Context
 import { FirebaseContext } from "firebase/context";
 //Componentes
-import HeaderEmpresa from 'components/Header/HeaderEmpresa'
+import Header from 'components/HeaderResponsive'
 import Layout from 'components/Layout'
 import {Formulario, Campo, Titulo, Contenedor, CampoNumero, BtnSubmit, Error} from 'components/UI'
 
@@ -61,7 +61,7 @@ const NuevoProducto = () => {
 
     return ( 
         <>
-            <HeaderEmpresa />
+            <Header/>
             <Layout>
                 <Titulo>Registro de Producto</Titulo>
                 <Formulario

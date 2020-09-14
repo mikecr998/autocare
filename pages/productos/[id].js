@@ -30,7 +30,7 @@ const ProductoPagina = () => {
             metodos.getProducto(id)
             .then( res => setProducto(res))
         }
-    }, [])
+    }, [id])
 
     const toggleLike = () => {
         if(producto.likes.includes(usuario.id)) { //Comprueba si el ID del user ya ha votado

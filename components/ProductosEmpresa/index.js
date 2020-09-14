@@ -1,7 +1,6 @@
 //Dependencias
 import Modal from 'react-modal'
 import {useState, useContext} from 'react'
-import {useRouter} from 'next/router'
 //Context
 import {FirebaseContext} from 'firebase/context'
 //Componentes
@@ -20,8 +19,7 @@ import CSS from 'components/Modal/styles.module.css'
 
 Modal.setAppElement("#__next")
 
-const ProductosEmpresa = ({producto, setCambio}) => {
-    const router = useRouter()
+const ProductosEmpresa = ({producto, productos, setProductos}) => {
     const [modalstate, setModal] = useState(false)
 
     const {metodos} = useContext(FirebaseContext)
@@ -29,8 +27,10 @@ const ProductosEmpresa = ({producto, setCambio}) => {
     const {id, nombre, fotoURL, marca, piezas} = producto
 
     const eliminar = () => {
+        const nuevosProductos = productos.filter(producto => producto.id !== id )
+
+        setProductos([...nuevosProductos])
         metodos.eliminarProducto(id)
-        setCambio(value => !value)
     }
 
     return ( 
@@ -55,7 +55,7 @@ const ProductosEmpresa = ({producto, setCambio}) => {
             </Contenedor>
 
             <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
-                <ModalActualizarProducto setModal={setModal} id={id} setCambio={setCambio}/>
+                <ModalActualizarProducto setModal={setModal} id={id} productos={productos} setProductos={setProductos}/>
             </Modal>
         </>
      );

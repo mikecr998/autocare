@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 //Login y Registro
 export const Formulario = styled.form`
-    position: relative;
     display:flex;
     flex-direction: column;
     align-items: center;
     width:80%;
-    margin: 3rem auto 2rem auto;
+    margin: 1rem auto 2rem auto;
     padding: .5rem;
     background-color: white;
     border-radius: 10px;
@@ -17,7 +16,7 @@ export const Formulario = styled.form`
     
     @media (min-width:768px) {
        width:500px;
-       margin: 2rem auto 0 auto;
+       margin: 0 auto 0 auto;
     }
 `;
 
@@ -44,14 +43,14 @@ export const Campo = styled.div`
 `;
 
 export const Titulo = styled.h1`
-    margin-top: 3rem;
+    margin-top: 7rem;
     text-align: center;
     font-size:  1.5rem;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
 
     @media(min-width:768px) {
-        margin-top: 3rem;
+        margin-top: 10rem;
     }
 `;
 

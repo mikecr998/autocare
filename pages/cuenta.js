@@ -5,8 +5,7 @@ import CSS from 'components/Modal/styles.module.css'
 import {FirebaseContext} from 'firebase/context'
 import { useState, useContext, useEffect } from 'react'
 //Componentes 
-import HeaderEmpresa from 'components/Header/HeaderEmpresa'
-import HeaderUsuario from 'components/Header/HeaderUsuario'
+import Header from "components/HeaderResponsive"
 import Layout from 'components/Layout'
 import {Titulo, ImagenUser} from 'components/UI'
 import CuentaEmpresa from 'components/Cuentas/Empresa'
@@ -33,13 +32,13 @@ const Cuenta = () => {
         }
     },[])    
     
-    const header = user && (user.tipo === "empresa" ? <HeaderEmpresa /> : <HeaderUsuario />)
+    // const header = user && (user.tipo === "empresa" ? <HeaderEmpresa /> : <HeaderUsuario />)
     const cuenta = user && (user.tipo === "empresa" ? 
         (<CuentaEmpresa user={user} setModal={setModal}/> ) : (<CuentaUsuario user={user} setModal={setModal} /> ))
     
     return ( 
         <>
-            {header}
+            <Header />
             <Layout>
                 <Titulo>Información de la empresa</Titulo>
                 <ImagenUser>

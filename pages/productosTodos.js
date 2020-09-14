@@ -1,10 +1,7 @@
 //Dependencias
-import { useContext, useState, useEffect } from "react";
-//Context
-import { FirebaseContext } from "firebase/context";
+import { useState, useEffect } from "react";
 //Componentes
-import HeaderGlobal from "components/Header/HeaderGlobal";
-import HeaderUsuario from "components/Header/HeaderUsuario";
+import Header from "components/HeaderResponsive/header"
 import { ContenedorCuadricula } from "components/ProductoEnLista/styles";
 import { Titulo } from "components/UI";
 import Producto from "components/ProductoEnLista";
@@ -14,17 +11,10 @@ import Buscador from "components/Buscador";
 import Firebase from 'firebase/metodos'
 
 const ProductosTodos = ({products}) => {
-  const { usuario } = useContext(FirebaseContext);
 
   const [productos, ] = useState(products);
   const [filtro, setFiltro] = useState("");
   const [productosFiltrados, setProductosFiltrados] = useState([]);
-
-  // useEffect(() => {
-  //   metodos.getProductos().then((res) => {
-  //     setProductos(res), setProductosFiltrados(res);
-  //   });
-  // }, []);
 
   useEffect(() => {
     if(productos) {
@@ -39,8 +29,7 @@ const ProductosTodos = ({products}) => {
 
   return (
     <>
-      {usuario ? <HeaderUsuario fixed /> : <HeaderGlobal fixed />}
-      
+      <Header />      
       <ContenedorCuadricula>
       <div className="centrado">
         <Buscador setFiltro={setFiltro} />  
