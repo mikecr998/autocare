@@ -1,44 +1,55 @@
 import styled from 'styled-components'
 
-export const Contenedor = styled.div`
-    margin: .5rem 1rem;
-    font-family: 'Roboto', sans-serif;
-    background-color: #C0B5A8;
+export const Contenedor = styled.article`
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
     align-items: center;
-    padding: 1rem 0rem;
-`;
+    padding: 20px 5px;
+    transition: all .3s;
+    border: 3px #d81428 solid;
+    width: 370px;
 
-export const Nombre = styled.h2`
-    font-size: 1rem;
-    text-align: center;
+    &:hover {
+        transform: scale(1.02);
+        border: 3px black solid;
+    }
 
-    @media(min-width:768px) {
-        font-size: 1.5rem;
+    @media (max-width:415px) {
+        width: 100%;
+        margin-bottom: 20px;
     }
 `;
 
-export const ContenedorImagen = styled.div`
+export const Nombre = styled.h2`
+    font-size: 16px;
+    text-align: center;
+
+    @media(min-width:768px) {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+`;
+
+export const ContenedorImagen = styled.figure`
     width: 100%;
     margin:0 auto;
 `;
 
 export const ContenedorCuadricula = styled.div`
-    width: 95%;
-    margin: 6rem auto 0;
+    max-width: 1200px;
+    width:95%;
+    margin: 6rem auto;
     display: grid;
     grid-template-rows: auto;
-    
+
     @media (min-width:768px) {
-        margin: 10rem auto;
+        margin: 20px auto 20px auto;
         grid-template-columns: repeat(3, 1fr);
-        gap: .5rem;     
+        row-gap: 30px;
 
         .centrado {
             grid-column: 1/4;
-        }  
+        }
     }
 `
 export const Imagen = styled.img`
@@ -54,16 +65,20 @@ export const FotterProducto = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 
     p{
         color: black;
+        font-size: 16px;
     }
     span {
         font-weight: 700;
     }
 
-    @media(min-width:768px) {
-        font-size: 1.3rem;
+    @media screen and (min-width:768px) {
+        p{
+            margin-bottom: 15px;
+        }
     }
 `;
 
@@ -74,44 +89,55 @@ export const ContendorBotones = styled.div`
     align-items: center;
 `
 
-export const Boton = styled.button`
+export const Boton = styled.a`
     text-transform: uppercase;
-    border: none;
-    padding: 0;
+    display: inline-block;
     margin:0;
     color: white;
-    background-color:   #e75293 ;
-    padding: .5rem 1rem;
+    background-color: #d81428;
+    padding: 10px 60px;
     font-weight: 700;
-    width: 300px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 22px -7px rgba(0,0,0,0.67);
-    -moz-box-shadow: 0px 0px 22px -7px rgba(0,0,0,0.67);
-    box-shadow: 0px 0px 22px -7px rgba(0,0,0,0.67);
+    cursor: pointer;
+    transition: all .5s;
+    border: 2px #d81428 solid;
+
+    :hover {
+        background-color: #ffd800;
+        color: black;
+        border: 2px black solid;
+    }
+
+`;
+
+export const BotonEditar = styled.button`
+    background-color: #d81428;
+    border: 2px #d81428 solid;
+    width: 45%;
+    color: white;
+    font-weight: 700;
+    transition: all .5s ease;
+    padding: 15px 10px;
     cursor: pointer;
 
     &:hover {
-        background-color: #e86aa2;
-    }
-`;
-
-export const BotonEditar = styled(Boton)`
-    background-color: #18abda;
-    width: 45%;
-
-    &:hover {
-        background-color: #1797c1;
+        background-color: white;
+        border: 2px black solid;
+        color: #d81428;
     }
 `
 
-export const BotonEliminar = styled(Boton)`
-    background-color: #e30707;
+export const BotonEliminar = styled.button`
+    background-color: #ffd800;
     width: 45%;
+    font-weight: 700;
+    transition: all .5s ease;
+    padding: 15px 10px;
+    cursor: pointer;
+    color: black;
+        border: 2px black solid;
 
     &:hover {
-        background-color: #da0606;
+        background-color: white;
+        color: #d81428;
     }
 `
-
-
-//Estilos de "ver-productos"

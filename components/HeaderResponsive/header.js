@@ -3,35 +3,40 @@ import Link from 'next/link'
 import Icono from './Icono'
 
 const Logo = styled.img`
-    height: 60px;
-    border-radius: 9999px;
+    width: 60px;
     cursor: pointer;
 
     @media(min-width: 768px) {
-        margin: 10px 0 0 20px;        
-        height: 100px;
+        width: 150px;
+        margin-left: 50px;
     }
 `;
 
 const Nav = styled.nav`
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #696969;
-    position: fixed;
-    top: 0;
+    z-index: 999;
+    background: white;
+    border-bottom: 10px #d81428 solid;
+    /* border-top: 10px #d81428 solid; */
+
+    @media screen and (max-width: 415px) {
+        position: fixed;
+        top: 0;
+    }
 `
-const Header = () => {    
-    return ( 
+const Header = () => {
+    return (
         <Nav>
             <Link href="/">
-                <Logo src="logo.png"/>
+                <Logo src="autocare.svg"></Logo>
             </Link>
             <Icono />
         </Nav>
      );
 }
- 
+
 export default Header;

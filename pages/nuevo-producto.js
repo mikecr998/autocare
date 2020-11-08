@@ -6,9 +6,9 @@ import {useRouter} from 'next/router'
 //Context
 import { FirebaseContext } from "firebase/context";
 //Componentes
-import Header from 'components/HeaderResponsive'
+import Header from 'components/HeaderResponsive/header'
 import Layout from 'components/Layout'
-import {Formulario, Campo, Titulo, Contenedor, CampoNumero, BtnSubmit, Error} from 'components/UI'
+import {Formulario, Campo, Titulo, Contenedor, CampoNumero, BtnSubmit, Error, FondoForm} from 'components/UI'
 
 const NuevoProducto = () => {
     const router = useRouter()
@@ -19,21 +19,21 @@ const NuevoProducto = () => {
     const [progreso, setProgreso] = useState(0)
 
     const OnSubmit = () => {
-        const info = getValues() 
+        const info = getValues()
         const {nombre, marca, descripcion, precio, piezas, foto} = info;
         if(nombre === "" || marca === "" || descripcion === "" || precio === "" || piezas === "" || foto.length === 0) {
             SetError("Todos los campos son obligatotios")
             return
         }
-        delete info.foto    
+        delete info.foto
         info.usuario= usuario.email
         info.usuarioNombre= usuario.nombre
         info.likes= []
         info.fotoURL= fotoURL
-        
+
         metodos.nuevoProducto(info).then(
-            () => router.push("/") 
-        )       
+            () => router.push("/")
+        )
     }
 
     const OnChangeFoto = e => {
@@ -45,31 +45,30 @@ const NuevoProducto = () => {
         //Subir foto del producto
         subida.on('state_changed', snapshot => {
             let porcentaje = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            setProgreso(porcentaje-20)           
+            setProgreso(porcentaje-20)
         }, error => {
             console.log(error)
         }, () => {
             referencia.getDownloadURL()
                 .then(url => setFotoURL(url))
                 .then(setProgreso(100))
-        })  
-    }    
+        })
+    }
 
     const OnChange = e => {
         setDatos({...datos,[e.target.name]: e.target.value})
     }
 
-    return ( 
-        <>
+    return (
+        <FondoForm>
             <Header/>
-            <Layout>
                 <Titulo>Registro de Producto</Titulo>
                 <Formulario
                     onSubmit={handleSubmit(()=> OnSubmit())}
                 >
                     {error && <div><Error>{error}</Error></div>}
                     <Campo>
-                        <input 
+                        <input
                             type="text"
                             placeholder="Nombre del producto"
                             name="nombre"
@@ -77,7 +76,7 @@ const NuevoProducto = () => {
                         />
                     </Campo>
                     <Campo>
-                        <input 
+                        <input
                             type="text"
                             placeholder="Marca del producto"
                             name="marca"
@@ -86,24 +85,24 @@ const NuevoProducto = () => {
                     </Campo>
                     <Contenedor>
                         <CampoNumero>
-                            <input 
+                            <input
                                 type="decimal"
                                 placeholder="Precio"
                                 name="precio"
                                 ref={register}
                             />
-                        </CampoNumero>                      
+                        </CampoNumero>
                         <CampoNumero>
-                            <input 
+                            <input
                                 type="number"
                                 placeholder="Piezas"
                                 name="piezas"
                                 ref={register}
                             />
                         </CampoNumero>
-                    </Contenedor>        
+                    </Contenedor>
                     <Campo>
-                        <input 
+                        <input
                             type="file"
                             name="foto"
                             ref={register}
@@ -112,22 +111,20 @@ const NuevoProducto = () => {
                         <progress value={progreso} max="100"></progress>
                     </Campo>
                     <Campo>
-                        <textarea 
+                        <textarea
                             placeholder="Descripción del producto" rows="5"
                             name="descripcion"
                             ref={register}
                         />
-                    </Campo>       
-                    
+                    </Campo>
                     <Campo>
                         <BtnSubmit>
                             Hecho
                         </BtnSubmit>
                     </Campo>
                 </Formulario>
-            </Layout>
-        </>
+        </FondoForm>
      );
 }
- 
+
 export default NuevoProducto;

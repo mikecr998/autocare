@@ -1,26 +1,25 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 import {useMediaQuery} from "react-responsive"
-import {useContext} from "react"
-//Context
-import {FirebaseContext} from 'firebase/context'
 
 const Ancor = styled.a`
     cursor: pointer;
     font-size: 18px;
     margin: 0 20px 0 0;
+    text-decoration: none;
+    color: #d81428;
+    display: inline-block;
+    width: 100%;
 
     &:hover {
-        color: #DEB887;
-    } 
+        color: #d81428;
+    }
 `;
-
 const Li = styled.li`
-    font-family: "Roboto", sans-serif;
     font-size: 22px;
     list-style: none;
     position: relative;
-    margin: 0 3rem 0 0;
+    margin: 0;
     cursor: pointer;
 
    ul {
@@ -29,6 +28,7 @@ const Li = styled.li`
        left: 0;
        padding: 0;
        margin: 0;
+       background-color: white;
    }
 
     &:hover {
@@ -37,46 +37,35 @@ const Li = styled.li`
         }
     }
 `;
-
 const ElementoEfecto = styled.li`
-    list-style: none;    
+    list-style: none;
     margin-top: -5px;
-    
-    a {
-        transition: margin-left .3s ease-in-out;
-    }
+    width: 100%;
 
-    &:hover a {        
-        margin-left: 10px;
-    }
 `;
-
 const LiMovile = styled.li`
-    font-family: "Roboto", sans-serif;
     font-size: 24px;
     cursor: pointer;
 
     a {
         text-decoration: none;
-        color: white
+        color: #d81428;
     }
 `;
-
 const SubMenuEmpresa = () => {
     const desktop= useMediaQuery({query: '(min-width:768px)'})
-    const { usuario} = useContext(FirebaseContext)
-    return ( 
+    return (
         <>
         { desktop  ? (
-            <Li>Productos
+            <Li className="productos-empresa">Productos
                 <ul>
                     <ElementoEfecto>
-                        <Link href="/ver-productos">
+                        <Link href="/ver-productos" passHref>
                             <Ancor>Ver</Ancor>
                         </Link>
                     </ElementoEfecto>
                     <ElementoEfecto>
-                        <Link href="/nuevo-producto">
+                        <Link href="/nuevo-producto" passHref>
                             <Ancor>Añadir</Ancor>
                         </Link>
                     </ElementoEfecto>
@@ -99,5 +88,5 @@ const SubMenuEmpresa = () => {
         </>
      );
 }
- 
+
 export default SubMenuEmpresa;

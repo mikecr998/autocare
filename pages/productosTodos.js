@@ -7,6 +7,7 @@ import { Titulo } from "components/UI";
 import Producto from "components/ProductoEnLista";
 import Spinner from "components/Spinner";
 import Buscador from "components/Buscador";
+import Footer from "components/Fotter";
 
 import Firebase from 'firebase/metodos'
 
@@ -29,10 +30,10 @@ const ProductosTodos = ({products}) => {
 
   return (
     <>
-      <Header />      
+      <Header />
       <ContenedorCuadricula>
       <div className="centrado">
-        <Buscador setFiltro={setFiltro} />  
+        <Buscador setFiltro={setFiltro} />
       </div>
         {productos === null ? (
           <div className="centrado">
@@ -48,6 +49,7 @@ const ProductosTodos = ({products}) => {
           ))
         )}
       </ContenedorCuadricula>
+            <Footer />
     </>
   );
 };

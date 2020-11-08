@@ -7,7 +7,7 @@ import {useContext} from 'react'
 import {FirebaseContext} from 'firebase/context'
 //Componentes
 import Layout from "components/Layout";
-import Header from "components/HeaderResponsive";
+import Header from "components/HeaderResponsive/header";
 import {
   Formulario,
   Campo,
@@ -15,17 +15,18 @@ import {
   Ancor,
   Titulo,
   Error,
+  FondoForm
 } from "components/UI";
 
 const RegistroUsuario = () => {
   const router = useRouter()
   const {metodos} = useContext(FirebaseContext)
-  
-  const { register, handleSubmit, errors } = useForm();
-  
 
-  const handleOnSubmit = (datos) => { //el handleSubmit de useForm() por default ejecuta el e.preventDefault() 
-    const {nombres, email,contraseña} = datos;   
+  const { register, handleSubmit, errors } = useForm();
+
+
+  const handleOnSubmit = (datos) => { //el handleSubmit de useForm() por default ejecuta el e.preventDefault()
+    const {nombres, email,contraseña} = datos;
     const info = {
       tipo: 'usuario',
       ...datos
@@ -37,7 +38,7 @@ const RegistroUsuario = () => {
     }
 
     try {
-      metodos.registrar(nameAndType, email, contraseña)       
+      metodos.registrar(nameAndType, email, contraseña)
       metodos.crearUsuarioBD(info)
       router.push("/login")
     } catch (error) {
@@ -46,9 +47,8 @@ const RegistroUsuario = () => {
   }
 
   return (
-    <>
+    <FondoForm>
       <Header/>
-      <Layout>
         <Titulo>Registro</Titulo>
         <Formulario onSubmit={handleSubmit(handleOnSubmit)}>
           <Campo>
@@ -108,8 +108,7 @@ const RegistroUsuario = () => {
             </Link>
           </Campo>
         </Formulario>
-      </Layout>
-    </>
+    </FondoForm>
   );
 };
 

@@ -1,16 +1,19 @@
 import styled from 'styled-components'
 
 export const Contenedor = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     color: white;
     background: #313536;
     width: 100%;
-    height: 100px;
+    padding: 40px 0px;
 
-    h2 {        
-        font-family: "Robot", sans-serif;
+    h2 {
         font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 415px) {
+        h2 {
+        font-size: 1.2rem;
+    }
     }
 `

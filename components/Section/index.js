@@ -1,23 +1,30 @@
-//Dependencias
-//Context
-//Componentes
-import {Contenedor, Titulo} from './styles'
-import Prodcuto from 'components/ProductoEnLista';
+import {Contenedor,ContenedorArticles, Titulo, Banner,Texto} from './styles'
+import Producto from 'components/ProductoEnLista';
 
 
 const Section = ({productos}) => {
-    return ( 
-        <>  
+    return (
+        <>
+            <Contenedor>
             <Titulo>Últimos agregados</Titulo>
-            <Contenedor>
-               {productos.map(producto => <Prodcuto key={producto.id} producto={producto}/>)}
+            <ContenedorArticles>
+               {productos.map(producto => <Producto key={producto.id} producto={producto}/>)}
+            </ContenedorArticles>
             </Contenedor>
-            <Titulo>Más vendidos</Titulo>
+
+            <Banner>
+               <figure></figure>
+               <h2>Contamos con la mejor calidad en productos</h2>
+            </Banner>
+
             <Contenedor>
-               {productos.map(producto => <Prodcuto key={producto.id} producto={producto}/>)}
+               <Titulo>Más vendidos</Titulo>
+               <ContenedorArticles>
+                  {productos.map(producto => <Producto key={producto.id} producto={producto}/>)}
+               </ContenedorArticles>
             </Contenedor>
         </>
      );
 }
- 
+
 export default Section;

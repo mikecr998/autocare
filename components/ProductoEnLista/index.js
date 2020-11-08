@@ -7,7 +7,7 @@ import {Contenedor, Nombre, Imagen, ContenedorImagen, FotterProducto, Boton} fro
 
 const Producto = ({producto}) => {
     const {nombre, marca, piezas, fotoURL, id} = producto
-    return ( 
+    return (
         <Contenedor>
             <Nombre>{nombre}</Nombre>
             <ContenedorImagen>
@@ -21,9 +21,9 @@ const Producto = ({producto}) => {
                 <Boton>
                     Ver Más
                 </Boton>
-            </Link>            
+            </Link>
         </Contenedor>
      );
 }
- 
+
 export default Producto;

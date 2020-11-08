@@ -6,11 +6,9 @@ import Firebase from 'firebase/metodos'
 export default function Home({productos}) {
   return (
     <>
-      <main >
         <Hero/>
         {productos && <Section productos={productos}/>}
         <Footer />
-      </main>
     </>
   )
 }
@@ -18,7 +16,7 @@ export default function Home({productos}) {
 export async function getServerSideProps(context) {
   const productos = await Firebase.getProductosUltimos()
   return {
-    props: {productos}, 
+    props: {productos}
   }
 }
 

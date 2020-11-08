@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { FirebaseContext } from "firebase/context";
 //Componentes
 import Layout from "components/Layout";
-import Header from "components/HeaderResponsive";
-import { Formulario, Campo, BtnSubmit, Titulo, Error } from "components/UI";
+import Header from "components/HeaderResponsive/header";
+import { Formulario, Campo, BtnSubmit, Titulo, Error, FondoForm } from "components/UI";
 
 const Login = () => {
   const router = useRouter();
@@ -37,9 +37,8 @@ const Login = () => {
     sessionStorage.setItem("usuario",usuario) 
   }
   return (
-    <>
-      <Header />
-      <Layout>
+      <FondoForm>
+        <Header />
         <Titulo>Iniciar Sesión</Titulo>
         <Formulario onSubmit={handleSubmit(handleOnSubmit)}>
             {error && <div><Error>{error}</Error></div>}
@@ -73,8 +72,7 @@ const Login = () => {
             <BtnSubmit type="submit">Iniciar Sesión</BtnSubmit>
           </Campo>
         </Formulario>
-      </Layout>
-    </>
+      </FondoForm>
   );
 };
 

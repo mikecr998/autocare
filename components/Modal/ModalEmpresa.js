@@ -9,57 +9,57 @@ const ModalEmpresa = ({setModal, userEmail, setUser}) => {
     const [error, SetError] = useState(null)
 
     const OnSubmit = () => {
-        const datos = getValues() 
+        const datos = getValues()
         const {nombre, direccion, url, rfc, telefono} = datos;
         if(nombre === "" || direccion === "" || url === "" || rfc === "" || telefono === "") {
             SetError(true)
             return
-        } 
+        }
         SetError(false)
         setModal(false)
         setUser({email: userEmail, tipo: "empresa",...datos})
         metodos.actualizarInfo(userEmail,datos)
         metodos.actualizarNombreEmpresaProducto(userEmail, nombre)
     }
-    return ( 
+    return (
         <div className={CSS.contenedor}>
             <button onClick={()=> setModal(false)} className={CSS.btnCerrar}>X</button>
             {error && <p className={CSS.error}>Todos los campos son obligatorios</p>}
             <form onSubmit={handleSubmit(OnSubmit)}>
-                <input 
-                    placeholder="Nuevo nombre" 
+                <input
+                    placeholder="Nuevo nombre"
                     name="nombre"
-                    ref={register} 
+                    ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Nueva dirección" 
+                <input
+                    placeholder="Nueva dirección"
                     name="direccion"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Nuevo URL" 
+                <input
+                    placeholder="Nuevo URL"
                     name="url"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Nuevo RFC" 
+                <input
+                    placeholder="Nuevo RFC"
                     name="rfc"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Nuevo teléfono" 
+                <input
+                    placeholder="Nuevo teléfono"
                     name="telefono"
                     ref={register}
                     className={CSS.input}
                 />
                 <input type="submit" value="Hecho" className={CSS.btnActualizar} />
-            </form>           
+            </form>
         </div>
      );
 }
- 
+
 export default ModalEmpresa;

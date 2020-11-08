@@ -1,17 +1,15 @@
-//Dependencias
-//Context
 //Componentes
 import {Contenedor, Input} from './styles'
 
 const Buscador = ({setFiltro}) => {
-    return ( 
+    return (
         <Contenedor>
-            <Input 
+            <Input
                 placeholder="Buscar por nombre o marca"
                 onChange={e => setFiltro(e.target.value)}
             />
-        </Contenedor>        
+        </Contenedor>
      );
 }
- 
+
 export default Buscador;

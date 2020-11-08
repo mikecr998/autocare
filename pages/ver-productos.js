@@ -3,12 +3,13 @@
 import { FirebaseContext } from "firebase/context";
 import { useContext, useEffect, useState } from "react";
 //Componentes
-import Header from "components/HeaderResponsive";
+import Header from "components/HeaderResponsive/header";
 import { Titulo } from "components/UI";
 import { ContenedorCuadricula } from "components/ProductoEnLista/styles";
 import Producto from "components/ProductosEmpresa";
 import Spinner from "components/Spinner";
 import Buscador from "components/Buscador";
+import Footer from "components/Fotter"
 
 const ProductosEmpresa = () => {
   const { metodos, usuario } = useContext(FirebaseContext);
@@ -21,7 +22,7 @@ const ProductosEmpresa = () => {
   useEffect(()=> {
     if (usuario) {
       metodos.getProductosEmpresa(usuario.email).then((productos) => {
-        setProductos(productos), setProductosFiltrados(productos); 
+        setProductos(productos), setProductosFiltrados(productos);
       });
     }
   }, [usuario])
@@ -50,7 +51,7 @@ const ProductosEmpresa = () => {
       <Header />
       <ContenedorCuadricula>
       <div className="centrado">
-        <Buscador setFiltro={setFiltro} />  
+        <Buscador setFiltro={setFiltro} />
       </div>
         {productos === null ? (
           <div className="centrado">
@@ -66,6 +67,7 @@ const ProductosEmpresa = () => {
           ))
         )}
       </ContenedorCuadricula>
+      {productos === null ? null : <Footer />}
     </>
   );
 };

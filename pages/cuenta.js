@@ -4,10 +4,10 @@ import CSS from 'components/Modal/styles.module.css'
 //Context
 import {FirebaseContext} from 'firebase/context'
 import { useState, useContext, useEffect } from 'react'
-//Componentes 
-import Header from "components/HeaderResponsive"
+//Componentes
+import Header from "components/HeaderResponsive/header"
 import Layout from 'components/Layout'
-import {Titulo, ImagenUser} from 'components/UI'
+import {Titulo, ImagenUser, FondoForm} from 'components/UI'
 import CuentaEmpresa from 'components/Cuentas/Empresa'
 import CuentaUsuario from 'components/Cuentas/Usuario'
 import ModalEmpresa from 'components/Modal/ModalEmpresa'
@@ -30,26 +30,24 @@ const Cuenta = () => {
             metodos.obtenerUsuario(sessionStorage.getItem("usuario"))
                     .then(res => setUser(res[0]))
         }
-    },[])    
-    
+    },[])
+
     // const header = user && (user.tipo === "empresa" ? <HeaderEmpresa /> : <HeaderUsuario />)
-    const cuenta = user && (user.tipo === "empresa" ? 
+    const cuenta = user && (user.tipo === "empresa" ?
         (<CuentaEmpresa user={user} setModal={setModal}/> ) : (<CuentaUsuario user={user} setModal={setModal} /> ))
-    
-    return ( 
-        <>
+
+    return (
+        <FondoForm cuenta>
             <Header />
-            <Layout>
-                <Titulo>Información de la empresa</Titulo>
+                <Titulo cuenta>Información de la empresa</Titulo>
                 <ImagenUser>
                     <img src="user.svg"/>
                 </ImagenUser>
                 {user === null ? <Spinner /> : cuenta}
-            </Layout>
             <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
                 {user && (user.tipo === "empresa" ? <ModalEmpresa setModal={setModal} userEmail={user.email} setUser={setUser} /> : <ModalUsuario setModal={setModal} userEmail={user.email} setUser={setUser}/>)}
             </Modal>
-        </>
+        </FondoForm>
      );
 }
 export default Cuenta;

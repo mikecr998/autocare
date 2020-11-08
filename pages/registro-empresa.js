@@ -6,18 +6,17 @@ import {useContext} from 'react'
 //Context
 import {FirebaseContext} from 'firebase/context'
 //Componentes
-import Layout from 'components/Layout'
-import Header from 'components/HeaderResponsive'
-import {Formulario, Campo, BtnSubmit, Ancor, Titulo, Error } from 'components/UI'
+import Header from 'components/HeaderResponsive/header'
+import {Formulario, Campo, BtnSubmit, Ancor, Titulo, Error, FondoForm } from 'components/UI'
 
 const RegistroEmpresa = () => {
     const router = useRouter()
     const {metodos} = useContext(FirebaseContext)
 
-    const { register, handleSubmit, errors } = useForm();    
+    const { register, handleSubmit, errors } = useForm();
 
-    const handleOnSubmit = async (datos) => { //el handleSubmit de useForm() por default ejecuta el e.preventDefault()   
-        const {nombre, email, contraseña} = datos;   
+    const handleOnSubmit = async (datos) => { //el handleSubmit de useForm() por default ejecuta el e.preventDefault()
+        const {nombre, email, contraseña} = datos;
         const info = {
             tipo: 'empresa',
             ...datos
@@ -30,57 +29,56 @@ const RegistroEmpresa = () => {
 
         try {
             metodos.registrar(nameAndType, email, contraseña)
-                .then(metodos.crearUsuarioBD(info))      
+                .then(metodos.crearUsuarioBD(info))
             router.push("/login")
         } catch (error) {
             console.log(error.message)
         }
     };
 
-    return ( 
-        <>
+    return (
+        <FondoForm>
         <Header />
-        <Layout>
             <Titulo>Registra tu negocio</Titulo>
             <Formulario
                 onSubmit={handleSubmit(handleOnSubmit)}
             >
                 <Campo>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Inserta nombre de negocio"
                         name="nombre"
                         ref={register({ required: true })}
-                     /> 
+                     />
                      {errors.nombre && <Error>Este campo es requerido</Error>}
-                </Campo> 
+                </Campo>
                 <Campo>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Inserta URL"
                         name="url"
                         ref={register({ required: true })}
-                     /> 
+                     />
                      {errors.url && <Error>Este campo es requerido</Error>}
                 </Campo>
                 <Campo>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Inserta RFC"
                         name="rfc"
                         ref={register({ required: true })}
-                     /> 
+                     />
                      {errors.rfc && <Error>Este campo es requerido</Error>}
-                </Campo> 
+                </Campo>
                 <Campo>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Inserta dirección del negocio"
                         name="direccion"
                         ref={register({ required: true })}
-                     /> 
+                     />
                      {errors.direccion && <Error>Este campo es requerido</Error>}
-                </Campo>  
+                </Campo>
                 <Campo>
                     <input
                         type="number"
@@ -130,14 +128,10 @@ const RegistroEmpresa = () => {
                     <Link href="/login">
                         <Ancor>¿Ya tienes cuenta? Inicia Sesión</Ancor>
                     </Link>
-                </Campo>                 
-                    
-            
-                                                   
+                </Campo>
             </Formulario>
-        </Layout>
-        </>
+        </FondoForm>
      );
 }
- 
+
 export default RegistroEmpresa;

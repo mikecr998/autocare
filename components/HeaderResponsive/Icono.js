@@ -1,11 +1,11 @@
 import {useState} from "react"
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import ListaMenu from "./ListaMenu"
 
-const Icono = styled.div` 
-    z-index: 20; 
+const Icono = styled.div`
+    z-index: 9999;
     display: "block";
 
     @media (min-width:768px) {
@@ -14,19 +14,22 @@ const Icono = styled.div`
 `
 const IconoBurguer = () => {
     const [menu, SetMenu]= useState(false)
-    return ( 
+    function ToggleMenu () {
+        SetMenu(value => !value)
+    }
+    return (
         <>
             <Icono>
-                <FontAwesomeIcon 
-                    icon={ menu ? faTimes : faList }
-                    height="40"
-                    color="white"
-                    onClick={()=> SetMenu(value => !value)}
+                <FontAwesomeIcon
+                    icon={ menu ? faTimes : faBars }
+                    height="30"
+                    color="#d81428"
+                    onClick={()=> ToggleMenu()}
                 />
             </Icono>
-            <ListaMenu menu={menu}/>
+            {typeof window !== 'undefined' ? <ListaMenu menu={menu} ToggleMenu={ToggleMenu}/> : null}
         </>
     );
 }
- 
+
 export default IconoBurguer;

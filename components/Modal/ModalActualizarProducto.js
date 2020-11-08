@@ -22,7 +22,7 @@ const ModalActualizarProducto = ({setModal, id, productos, setProductos}) => {
         if(nombre === "" || marca === "" || precio === "" || piezas === "" || descripcion === "" || foto.length === 0) {
             SetError(true)
             return
-        } 
+        }
         delete datos.foto
         datos.fotoURL= fotoURL
         SetError(false)
@@ -37,7 +37,7 @@ const ModalActualizarProducto = ({setModal, id, productos, setProductos}) => {
             }
         })
         setProductos([...nuevosProductos])
-        metodos.actualizarProducto(id, datos)        
+        metodos.actualizarProducto(id, datos)
     }
 
     const OnChangeFoto = e => {
@@ -48,63 +48,63 @@ const ModalActualizarProducto = ({setModal, id, productos, setProductos}) => {
 
         //Subir foto del producto
         subida.on('state_changed', snapshot => {
-                       
+
         }, error => {
             console.log(error)
         }, () => {
             referencia.getDownloadURL()
                 .then(url => setFotoURL(url))
-        })  
-    }  
+        })
+    }
 
-    return ( 
+    return (
         <div className={CSS.contenedor}>
             <button onClick={()=> setModal(false)} className={CSS.btnCerrar}>X</button>
             {error && <p className={CSS.error}>Todos los campos son obligatorios</p>}
             <form onSubmit={handleSubmit(OnSubmit)}>
-                <input 
-                    placeholder="Nombre" 
+                <input
+                    placeholder="Nombre"
                     name="nombre"
-                    ref={register} 
+                    ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Marca" 
+                <input
+                    placeholder="Marca"
                     name="marca"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
+                <input
                     type="number"
-                    placeholder="Precio" 
+                    placeholder="Precio"
                     name="precio"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
+                <input
                     type="number"
-                    placeholder="Piezas" 
+                    placeholder="Piezas"
                     name="piezas"
                     ref={register}
                     className={CSS.input}
                 />
-                <input 
+                <input
                     type="file"
                     name="foto"
                     ref={register}
                     onChange={OnChangeFoto}
                     className={CSS.inputFile}
                 />
-                <textarea 
-                    placeholder="Descripción" 
+                <textarea
+                    placeholder="Descripción"
                     name="descripcion"
                     ref={register}
                     className={CSS.input}
                 />
                 <input type="submit" value="Hecho" className={CSS.btnActualizar} />
-            </form>           
+            </form>
         </div>
      );
 }
- 
+
 export default ModalActualizarProducto;

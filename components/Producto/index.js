@@ -14,7 +14,6 @@ import {
   ContenedorInfo,
   ContenedorFotter,
   IconoLike,
-  Piezas,
   ContenedorAbajo,
   ContenedorArriba,
   BtnComprar,
@@ -50,6 +49,7 @@ const Prodcuto = ({ producto, toggleLike, setModal}) => {
         <ContenedorImagen>
           <Imagen src={fotoURL} />
           <ContenedorFotter>
+            <div>
             <IconoLike onClick={toggleLike}>
               {usuario &&
                 (
@@ -59,22 +59,22 @@ const Prodcuto = ({ producto, toggleLike, setModal}) => {
                     color={producto.likes.includes(usuario.id) ? "#2d88ff" : "gray" }
                   />
                 )}
-              <p>{likes.length} Likes</p>
             </IconoLike>
-            <Piezas>{piezas} piezas</Piezas>
+            <p>{likes.length} Likes</p>
+            </div>
+            <p>{piezas} piezas</p>
           </ContenedorFotter>
         </ContenedorImagen>
 
         <ContenedorInfo>
-          
           <ContenedorArriba>
-            <p>Marca: <span>{marca}</span></p>            
+            <p>Marca: <span>{marca}</span></p>
             <p className="precio">$ {precio}</p>
           </ContenedorArriba>
           <ContenedorAbajo>
             <p>Descripción:</p>
             <span>{descripcion}</span>
-          </ContenedorAbajo>          
+          </ContenedorAbajo>
           <ContenedorAbajo>
             <p>Ofrecido por:</p>
             <span>{usuarioNombre}</span>

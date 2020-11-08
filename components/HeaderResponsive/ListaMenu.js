@@ -13,43 +13,67 @@ const Ancor = styled.a`
     cursor: pointer; /* Movile */
     font-size: 1.5rem;
     text-decoration: none;
+    color: #d81428;
+    transition: all .5s;
 
    @media(min-width: 768px) { /* Desktop */
     font-size: 22px;
-    
-    &:hover {
-        color: #DEB887;
-    }
-   } 
+    margin: 0;
+    padding: 10px 20px;
+   }
 `;
 
 const BtnAncor = styled.a`
     font-size: 22px;
-    cursor: pointer; 
-    background-color: ${props => props.login ? "#35ab5c" : "#d32f2f"};
-    border-radius: 10px;
+    cursor: pointer;
+    /* background-color: ${props => props.login ? "black" : "#d5152a"}; */
+    background-color: #d5152a;
     padding: .5rem;
+    text-decoration: none;
+    color: white;
+    transition: all .5s;
+    border: 2px #d5152a solid;
+
+    :hover {
+        background-color: #ffd800;
+        color: black;
+        border: 2px black solid;
+    }
 `
 const Ul = styled.ul`
     list-style: none; /* Desktop */
     display: flex;
     justify-content: space-around;
-    margin: 0;  
-    padding: 0;    
-    
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+
     li {
-        color: white;
-        font-family:"Roboto", sans-serif;
-        font-weight: 700;   
-        margin: 0 3rem 0 0;    
+        color: #d81428;
+        font-weight: 700;
+        margin: 0 3rem 0 0;
+        border: 3px transparent solid;
+        transition: all .5s;
+        padding: 10px 0px;
+    }
+    li:hover {
+        border-bottom: 3px #d81428 solid;
     }
 
-    @media (max-width: 768px) { /* Movile */
-        display: "flex";
+    .cerrar-sesion:hover {
+        border-bottom: transparent;
+    }
+    .registro:hover {
+        border-bottom: transparent;
+    }
+    .productos-empresa:hover {
+        border-bottom: transparent;
+    }
+
+    @media (max-width: 768px) { /* Movile and Tablet*/
         flex-direction: column;
-        background: #696969;
+        background: #2e2e2e;
         position: fixed;
-        opacity: .95;
         top: 0;
         right: 0;
         height: 100vh;
@@ -57,58 +81,62 @@ const Ul = styled.ul`
         transform: ${props => props.menu === true ? "translateX(0)" : "translateX(100%)"};
         transition: transform 0.3s ease-in-out;
         padding: 0;
-        
+
         li {
             margin: 0 auto;
-            
-        }      
+
+        }
     }
 `
 
-const ListaMenu = ({menu}) => {
-    const {metodos, usuario} = useContext(FirebaseContext) 
+const ListaMenu = ({menu, ToggleMenu}) => {
+    const {metodos, usuario} = useContext(FirebaseContext)
     const router= useRouter()
 
     const CerrarSesion = () => {
+        ToggleMenu()
         metodos.cerrarSesion()
         router.push("/")
     }
-    return ( 
+    return (
         <Ul menu={menu}>
             <li>
-                <Link href="/">
+                <Link href="/" passHref>
                     <Ancor>Inicio</Ancor>
                 </Link>
             </li>
             {
                 !usuario && (
                     <li>
-                        <Link href="/productosTodos">
+                        <Link href="/productosTodos"  passHref>
                             <Ancor>Productos</Ancor>
                         </Link>
                     </li>
                 )
             }
             {
-                usuario && (
-                    usuario.tipo === "empresa" ? (
-                        <SubMenuEmpresa />
-                    ) : (
-                    <li>
-                        <Link href="/productosTodos">
-                            <Ancor>Productos</Ancor>
-                        </Link>
-                    </li>
+                typeof window !== "undefined" ? (
+                    usuario && (
+                        usuario.tipo === "empresa" ? (
+                            <SubMenuEmpresa />
+                        ) : (
+                        <li>
+                            <Link href="/productosTodos" passHref>
+                                <Ancor>Productos</Ancor>
+                            </Link>
+                        </li>
+                        )
                     )
-                )
+                ) : null
+
             }
             {
-                !usuario && <SubMenuRegistro /> 
+                typeof window !== "undefined" ? ( !usuario && <SubMenuRegistro /> ) : null
             }
             {
                 usuario && (
                     <li>
-                        <Link href="/cuenta">
+                        <Link href="/cuenta" passHref>
                             <Ancor>Cuenta</Ancor>
                         </Link>
                     </li>
@@ -116,21 +144,15 @@ const ListaMenu = ({menu}) => {
             }
             {
                 usuario ? (
-                    <li>
+                    <li className="cerrar-sesion">
                         <BtnAncor
                             onClick={CerrarSesion}
                         >Cerrar Sesion</BtnAncor>
                     </li>
-                ) : (
-                    <li>
-                        <Link href="/login">
-                            <BtnAncor login>Iniciar Sesión</BtnAncor>
-                        </Link>
-                    </li>
-                )
+                ) : null
             }
         </Ul>
      );
 }
- 
+
 export default ListaMenu;

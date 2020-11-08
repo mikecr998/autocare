@@ -5,12 +5,12 @@ import {useState, useContext} from 'react'
 import {FirebaseContext} from 'firebase/context'
 //Componentes
 import {
-    Contenedor, 
-    Nombre, 
-    Imagen, 
-    ContenedorImagen, 
+    Contenedor,
+    Nombre,
+    Imagen,
+    ContenedorImagen,
     FotterProducto,
-    ContendorBotones, 
+    ContendorBotones,
     BotonEditar,
     BotonEliminar
 } from 'components/ProductoEnLista/styles'
@@ -33,7 +33,7 @@ const ProductosEmpresa = ({producto, productos, setProductos}) => {
         metodos.eliminarProducto(id)
     }
 
-    return ( 
+    return (
         <>
             <Contenedor>
                 <Nombre>{nombre}</Nombre>
@@ -60,5 +60,5 @@ const ProductosEmpresa = ({producto, productos, setProductos}) => {
         </>
      );
 }
- 
+
 export default ProductosEmpresa;
