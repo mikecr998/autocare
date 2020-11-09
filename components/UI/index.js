@@ -256,6 +256,7 @@ export const BotonPrimario = styled.a`
     cursor: pointer;
     font-weight: 700;
     font-size: 20px;
+    display: inline-block;
 
     :hover {
         background-color: rgba(255,255,255,.3);
@@ -263,7 +264,10 @@ export const BotonPrimario = styled.a`
     }
 
     @media screen and (max-width: 415px) {
+        margin: 0 auto;
+        max-width:250px;
         padding: 10px 20px;
+        font-size: 16px;
         font-size: 16px;
     }
 `

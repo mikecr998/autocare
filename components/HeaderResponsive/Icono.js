@@ -6,7 +6,7 @@ import ListaMenu from "./ListaMenu"
 
 const Icono = styled.div`
     z-index: 9999;
-    display: "block";
+    /* display: "block"; */
 
     @media (min-width:768px) {
         display: none;

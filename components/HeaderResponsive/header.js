@@ -18,7 +18,7 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 999;
+    z-index: 5;
     background: white;
     border-bottom: 10px #d81428 solid;
     /* border-top: 10px #d81428 solid; */

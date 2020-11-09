@@ -6,7 +6,6 @@ import {FirebaseContext} from 'firebase/context'
 import { useState, useContext, useEffect } from 'react'
 //Componentes
 import Header from "components/HeaderResponsive/header"
-import Layout from 'components/Layout'
 import {Titulo, ImagenUser, FondoForm} from 'components/UI'
 import CuentaEmpresa from 'components/Cuentas/Empresa'
 import CuentaUsuario from 'components/Cuentas/Usuario'
@@ -16,6 +15,17 @@ import Spinner from 'components/Spinner'
 
 Modal.setAppElement("#__next")
 
+const overlayPortal = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        zIndex: 999
+    }
+}
 const Cuenta = () => {
     const {metodos, usuario} = useContext(FirebaseContext)
     const [user, setUser] = useState(usuario)
@@ -39,12 +49,12 @@ const Cuenta = () => {
     return (
         <FondoForm cuenta>
             <Header />
-                <Titulo cuenta>Información de la empresa</Titulo>
+                <Titulo cuenta>Información de la cuenta</Titulo>
                 <ImagenUser>
                     <img src="user.svg"/>
                 </ImagenUser>
                 {user === null ? <Spinner /> : cuenta}
-            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
+            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal} style={overlayPortal}>
                 {user && (user.tipo === "empresa" ? <ModalEmpresa setModal={setModal} userEmail={user.email} setUser={setUser} /> : <ModalUsuario setModal={setModal} userEmail={user.email} setUser={setUser}/>)}
             </Modal>
         </FondoForm>

@@ -9,38 +9,38 @@ const ModalUsuario = ({setModal, userEmail, setUser}) => {
     const [error, SetError] = useState(null)
 
     const OnSubmit = () => {
-        const datos = getValues() 
+        const datos = getValues()
         const {nombres, apellidos} = datos;
         if(nombres === "" || apellidos === "") {
             SetError(true)
             return
-        } 
+        }
         SetError(false)
         setModal(false)
         setUser({email:userEmail, tipo: "usuario", ...datos})
         metodos.actualizarInfo(userEmail,datos)
     }
-    return ( 
+    return (
         <div className={CSS.contenedor}>
             <button onClick={()=> setModal(false)} className={CSS.btnCerrar}>X</button>
             {error && <p className={CSS.error}>Todos los campos son obligatorios</p>}
             <form onSubmit={handleSubmit(OnSubmit)}>
-                <input 
-                    placeholder="Nombre" 
+                <input
+                    placeholder="Nombre"
                     name="nombres"
-                    ref={register} 
+                    ref={register}
                     className={CSS.input}
                 />
-                <input 
-                    placeholder="Apellido" 
+                <input
+                    placeholder="Apellido"
                     name="apellidos"
                     ref={register}
                     className={CSS.input}
                 />
                 <input type="submit" value="Hecho" className={CSS.btnActualizar} />
-            </form>           
+            </form>
         </div>
      );
 }
- 
+
 export default ModalUsuario;

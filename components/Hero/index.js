@@ -1,6 +1,9 @@
 //Dependencias
 import Link from "next/link"
 import styled from 'styled-components'
+import {useContext} from "react"
+//Context
+import {FirebaseContext} from 'firebase/context'
 //Componentes
 import Header from "components/HeaderResponsive/header"
 import {BotonPrimario} from "components/UI"
@@ -39,7 +42,6 @@ const Frase = styled.h1`
         color: #d81428;
     }
 
-
     @media (max-width:415px) {
         font-size: 20px;
         line-height: 32px;
@@ -49,13 +51,14 @@ const Frase = styled.h1`
     }
 `
 const Hero = () => {
+    const {usuario} = useContext(FirebaseContext)
     return (
         <>
         <Background>
         <Header/>
             <Contenido>
                 <Frase>Descubre las <span>mejores piezas</span> y las más recomendadas aquí</Frase>
-                <Link href="/login" passHref>
+                <Link href={usuario ? (usuario.tipo !== "empresa" ? "/productosTodos" : "/ver-productos") : "/login"} passHref>
                     <BotonPrimario>COMPRAR AHORA</BotonPrimario>
                 </Link>
             </Contenido>
