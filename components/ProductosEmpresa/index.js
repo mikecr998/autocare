@@ -19,6 +19,17 @@ import CSS from 'components/Modal/styles.module.css'
 
 Modal.setAppElement("#__next")
 
+const overlayPortal = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        zIndex: 999
+    }
+}
 const ProductosEmpresa = ({producto, productos, setProductos}) => {
     const [modalstate, setModal] = useState(false)
 
@@ -54,7 +65,7 @@ const ProductosEmpresa = ({producto, productos, setProductos}) => {
                 </ContendorBotones>
             </Contenedor>
 
-            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
+            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal} style={overlayPortal}>
                 <ModalActualizarProducto setModal={setModal} id={id} productos={productos} setProductos={setProductos}/>
             </Modal>
         </>

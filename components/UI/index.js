@@ -10,7 +10,6 @@ export const Formulario = styled.form`
     padding-bottom: 10px;
     background-color: rgba(255,255,255,.4);
     backdrop-filter: blur(5px);
-    /* -webkit-backdrop-filter: blur(5px); */
 
     @media (min-width:768px) {
        width:500px;
@@ -27,7 +26,7 @@ export const FondoForm = styled.div`
     @media screen and (max-width: 415px) { /* Movile */
         margin-top: -50px;
         padding-top: 10px;
-        height: 120vh;
+        height: calc(100vh + 50px);
     }
 `;
 export const Campo = styled.div`
@@ -61,9 +60,10 @@ export const Campo = styled.div`
 `;
 
 export const Titulo = styled.h1`
-    margin-top: 150px;
+    margin-top: 120px;
+    margin-bottom: 20px;
     text-align: center;
-    font-size:  1.5rem;
+    font-size:  1rem;
     text-transform: uppercase;
     color: ${props => props.cuenta ? 'white' : '#ffd800' };
 
@@ -184,14 +184,25 @@ export const Dato = styled.div`
         font-weight: 700;
         text-align: center;
     }
+    @media screen and (max-width:414px) {
+        h3 {
+        font-size: 14px;
+        }
+        p {
+        font-size: 14px;
+        }
+    }
 `;
 
-export const ImagenUser = styled.div`
+export const ImagenUser = styled.figure`
     text-align: center;
     margin: 1rem auto;
 
     img {
         height: 100px;
+    }
+    @media screen and (max-width: 414px) {
+        display: none;
     }
 `;
 export const ContenedorBtn = styled.div`
@@ -232,6 +243,11 @@ export const BtnActualizar = styled.button`
     }
     &:focus {
         outline: none;
+    }
+
+    @media screen and (max-width:414px) {
+        font-size: 14px;
+        padding: .5rem .8rem;
     }
 `;
 

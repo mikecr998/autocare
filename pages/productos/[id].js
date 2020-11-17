@@ -14,6 +14,17 @@ import Footer from "components/Fotter"
 
 Modal.setAppElement("#__next")
 
+const overlayPortal = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        zIndex: 999
+    }
+}
 const ProductoPagina = () => {
 
     const {metodos, usuario} = useContext(FirebaseContext)
@@ -49,8 +60,8 @@ const ProductoPagina = () => {
     return (
         <>
             <Header />
-            {Object.keys(producto).length === 0 ? <Spinner /> : <Producto producto={producto} toggleLike={toggleLike} setModal={setModal}/>}
-            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal}>
+            {Object.keys(producto).length === 0 ? <Spinner /> : <Producto producto={producto} toggleLike={toggleLike} setModal={setModal} />}
+            <Modal isOpen={modalstate} onRequestClose={()=>setModal(false)} className={CSS.modal} style={overlayPortal}>
                 <ModalCompra setModal={setModal} id={id}/>
             </Modal>
             <Footer />

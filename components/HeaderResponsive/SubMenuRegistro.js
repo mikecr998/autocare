@@ -6,10 +6,13 @@ import {useMediaQuery} from "react-responsive"
 const Ancor = styled.a`
     cursor: pointer;
     font-size: 18px;
-    margin: 0 20px 0 0;
+    margin: 0;
     text-decoration: none;
     color: #d81428;
     transition: all .5s;
+    width: 100%;
+    padding: 10px 0px;
+    display: inline-block;
 
     &:hover {
         color: #d81428;

@@ -10,6 +10,7 @@ const Ancor = styled.a`
     color: #d81428;
     display: inline-block;
     width: 100%;
+    padding: 10px 0px;
 
     &:hover {
         color: #d81428;
@@ -37,11 +38,10 @@ const Li = styled.li`
         }
     }
 `;
-const ElementoEfecto = styled.li`
+const Elemento = styled.li`
     list-style: none;
     margin-top: -5px;
     width: 100%;
-
 `;
 const LiMovile = styled.li`
     font-size: 24px;
@@ -59,16 +59,16 @@ const SubMenuEmpresa = () => {
         { desktop  ? (
             <Li className="productos-empresa">Productos
                 <ul>
-                    <ElementoEfecto>
+                    <Elemento>
                         <Link href="/ver-productos" passHref>
                             <Ancor>Ver</Ancor>
                         </Link>
-                    </ElementoEfecto>
-                    <ElementoEfecto>
+                    </Elemento>
+                    <Elemento>
                         <Link href="/nuevo-producto" passHref>
                             <Ancor>Añadir</Ancor>
                         </Link>
-                    </ElementoEfecto>
+                    </Elemento>
                 </ul>
             </Li>
         ) : (

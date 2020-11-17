@@ -54,7 +54,7 @@ const Ul = styled.ul`
         margin: 0 3rem 0 0;
         border: 3px transparent solid;
         transition: all .5s;
-        padding: 10px 0px;
+        /* padding: 10px 0px; */
     }
     li:hover {
         border-bottom: 3px #d81428 solid;
